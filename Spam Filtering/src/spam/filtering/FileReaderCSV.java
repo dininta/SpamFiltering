@@ -15,25 +15,19 @@ import java.util.ArrayList;
  * @author mochamadtry
  */
 public class FileReaderCSV {
-    
-    public static void main(String[] args) {
-        // TODO code application logic here
-        String csvFile = "G:\\Kuliah\\7th Semester\\NLP\\Spam Filtering\\src\\spam\\filtering\\notSpam.csv";
+
+    public ArrayList readFile(String csvFile) {    
         BufferedReader br = null;
         String line;
         ArrayList features = new ArrayList();
 
         try {
-
             br = new BufferedReader(new FileReader(csvFile));
             while ((line = br.readLine()) != null) {
-
                 // use comma as separator
                 String data = line;
                 features.add(line);
-
             }
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -47,10 +41,8 @@ public class FileReaderCSV {
                 }
             }
         }
-        //System.out.println(Arrays.toString(features));
-        System.out.println(features.get(3));
         
+        return features;
     }
-    
     
 }
