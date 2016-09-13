@@ -6,7 +6,8 @@
 package spam.filtering;
 
 import java.util.ArrayList;
-import IndonesianNLP.IndonesianSentenceFormalization; 
+import IndonesianNLP.IndonesianSentenceFormalization;
+import IndonesianNLP.IndonesianStemmer;
 
 /**
  *
@@ -19,18 +20,40 @@ public class main {
         ArrayList notSpam = reader.readFile("C:\\Users\\TOSHIBA PC\\Documents\\GitHub\\SpamFiltering\\Spam Filtering\\src\\spam\\filtering\\notSpam.csv");
 
         System.out.println("BEFORE");
-        System.out.println(spam.get(3));
+        System.out.println(spam.get(5));
         
-        // Formalize every text
+        // Preprocess
         IndonesianSentenceFormalization formalizer = new IndonesianSentenceFormalization();
+        IndonesianStemmer stemmer = new IndonesianStemmer();
+        
         for (int i = 0; i < spam.size(); i++) {
-            spam.set(i, formalizer.normalizeSentence(spam.get(i).toString()));
+            // Formalization
+            String text = formalizer.normalizeSentence(spam.get(i).toString());
+            
+            // Stemming
+            StringBuilder result = new StringBuilder();
+            String[] words = text.split(" ");
+            for (String word : words) {
+                if (word.length() > 1) result.append(stemmer.stem(word + " "));
+            }
+            
+            spam.set(i, result.toString());
         }
         for (int i = 0; i < notSpam.size(); i++) {
-            notSpam.set(i, formalizer.normalizeSentence(notSpam.get(i).toString()));
+            // Formalization
+            String text = formalizer.normalizeSentence(notSpam.get(i).toString());
+            
+            // Stemming
+            StringBuilder result = new StringBuilder();
+            String[] words = text.split(" ");
+            for (String word : words) {
+                if (word.length() > 1) result.append(stemmer.stem(word + " "));
+            }
+            
+            notSpam.set(i, result.toString());
         }
         
-        System.out.println("AFTER NORMALIZATION");
-        System.out.println(spam.get(3));
+        System.out.println("AFTER");
+        System.out.println(spam.get(5));
     }
 }
