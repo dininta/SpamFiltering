@@ -16,11 +16,12 @@ import IndonesianNLP.IndonesianStemmer;
 public class main {
     public static void main(String[] args) {        
         FileReaderCSV reader = new FileReaderCSV();
-        ArrayList spam = reader.readFile("C:\\Users\\TOSHIBA PC\\Documents\\GitHub\\SpamFiltering\\Spam Filtering\\src\\spam\\filtering\\spam.csv");
-        ArrayList notSpam = reader.readFile("C:\\Users\\TOSHIBA PC\\Documents\\GitHub\\SpamFiltering\\Spam Filtering\\src\\spam\\filtering\\notSpam.csv");
+        ArrayList spam = reader.readFile("traindata/spam.csv");
+        ArrayList notSpam = reader.readFile("traindata/notSpam.csv");
 
         System.out.println("BEFORE");
-        System.out.println(spam.get(5));
+        
+        System.out.println(spam.get(7));
         
         // Preprocess
         IndonesianSentenceFormalization formalizer = new IndonesianSentenceFormalization();
@@ -29,6 +30,10 @@ public class main {
         for (int i = 0; i < spam.size(); i++) {
             // Formalization
             String text = formalizer.normalizeSentence(spam.get(i).toString());
+            
+            //Stop Word
+            formalizer.initStopword();
+            text = formalizer.deleteStopword(text);
             
             // Stemming
             StringBuilder result = new StringBuilder();
@@ -43,6 +48,10 @@ public class main {
             // Formalization
             String text = formalizer.normalizeSentence(notSpam.get(i).toString());
             
+            //Stop Word
+            formalizer.initStopword();
+            text = formalizer.deleteStopword(text);
+            
             // Stemming
             StringBuilder result = new StringBuilder();
             String[] words = text.split(" ");
@@ -54,6 +63,9 @@ public class main {
         }
         
         System.out.println("AFTER");
-        System.out.println(spam.get(5));
+        System.out.println(spam.get(7));
+        
+        reader.writeFile(spam, "PreprocessSpam.csv");
+        reader.writeFile(notSpam, "PreprocessNotSpam.csv");
     }
 }
