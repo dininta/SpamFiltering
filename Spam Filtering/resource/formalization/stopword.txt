@@ -269,6 +269,7 @@ inilah
 itu
 itukah
 itulah
+iya
 jadi
 jadilah
 jadinya
@@ -756,3 +757,4 @@ yaitu
 yakin
 yakni
 yang
+yuk

@@ -56,6 +56,7 @@ aseknya	asyiknya
 asem	asam
 asoy	asyik
 aspal	asli tetapi palsu
+ass	assalamualaikum
 astrojim	astagfirullahaladzim
 astul	asal tulis
 ath	kalau begitu
@@ -158,6 +159,7 @@ bsen	bosan
 bsk	besok
 bt	bosan sekali
 bt	buat
+bth	butuh
 btw	ngomong-ngomong
 bu_bu	tidur
 buaya	tidak setia
@@ -227,6 +229,7 @@ cpa	siapa
 cpe	capek
 cppa	siapa
 cppe	capek
+cpt	cepat
 cr	cara
 cucok	cocok
 cuek	tidak acuh
@@ -272,6 +275,7 @@ diuber	dikejar
 dket	dekat
 dkit	sedikit
 dkk	dan kawan-kawan
+dkt	dekat
 dl	dulu
 dll	dan lain-lain
 dlm	dalam
@@ -287,6 +291,8 @@ dongs	dong
 donlot	unduh
 dpn	depan
 dpt	dapat
+dptkan	dapatkan
+dptkn	dapatkan
 dr	dari
 dri	dari
 drmana	darimana
@@ -453,10 +459,14 @@ jgn	jangan
 jgnkan	jangankan
 jijay	jijik
 jir	anjing
+jk	jika
 jkt	jakarta
+jl	jalan
 jln	jalan
 jnj	janji
 jomblo	tidak punya pacar
+jt	juta
+jta	juta
 jth	jatuh
 jubir	juru bicara
 jurdil	jujur adil
@@ -523,8 +533,10 @@ khan	kan
 kibul	bohong
 kibus	kaki busuk
 kimpoi	kawin
+kirm	kirim
 kk	kakak
 kl	kalau
+klau	kalau
 klian	kalian
 klianz	kalian
 klo	kalau
@@ -534,6 +546,8 @@ klw	kalau
 klwrga	keluarga
 km	kamu
 kmari	kemari
+kmbl	kembali
+kmbli	kembali
 kmps	kampus
 kmpus	kampus
 kmrn	kemarin
@@ -561,6 +575,7 @@ krik	garing
 krm	kirim
 krn	karena
 kt	kita
+kta	kita
 ktauan	ketahuan
 ktmu	ketemu
 ktny	katanya
@@ -622,6 +637,7 @@ luthu	lucu
 lw	kamu
 lwn	lawan
 lwt	lewat
+ma	mama
 maacih	terima kasih
 maaciw	terima kasih
 mabal	bolos
@@ -652,6 +668,8 @@ mao	mau
 markus	makelar kasus
 masukin	masukkan
 mba	mbak
+mbl	mobil
+mdpt	mendapat
 melu	ikut
 mending	lebih baik
 mepet	dekat sekali
@@ -697,7 +715,6 @@ muup	maaf
 muupz	maaf
 muuv	maaf
 mw	mau
-mw	now watching
 n	dan
 nal	kenal
 nanam	menanam
@@ -777,6 +794,7 @@ nimbrung	ikut serta
 niyh	nih
 nkah	nikah
 nmr	nomor
+nmor	nomor
 nnti	nanti
 nntn	nonton
 no	nomor
@@ -791,6 +809,7 @@ nuhun	terima kasih
 numpuk	bertumpuk
 nunggu	menunggu
 nutupin	menutupi
+nw	now watching
 nyampah	membuat sampah
 nyari	mencari
 nyariin	mencari
@@ -896,6 +915,7 @@ ref	referensi
 reg	register
 rehab	rehabilitasi
 rejeki	rezeki
+rek	rekening
 rempong	sulit
 renstra	rencana strategis
 repp	balas
@@ -935,6 +955,7 @@ scara	secara
 scr	secara
 sdg	sedang
 sdgkn	sedangkan
+sdah	sudah
 sdh	sudah
 sdkt	sedikit
 sdngkn	sedangkan
@@ -998,12 +1019,16 @@ sppa	siapa
 sprti	seperti
 spt	seperti
 spy	supaya
+skg	sekarang
+skrg	sekarang
+skrng	sekarang
 srtfkt	sertifikat
 stelah	setelah
 stiap	setiap
 stiap	setiap
 stlh	setelah
 subbag	subbagian
+sudh	sudah
 suk	masuk
 sumbangin	sumbangkan
 sumpek	sempit
@@ -1073,7 +1098,7 @@ tpi	tapi
 tq	terima kasih
 trdhulu	terdahulu
 trgntg	tergantung
-trima	terima kasih
+trima	terima
 trims	terima kasih
 trm	terima
 trnyt	ternyata
@@ -1103,6 +1128,7 @@ ujg	ujung
 ujung2nya	ujung-ujungnya
 ul	ulangan
 ultah	ulang tahun
+untk	untuk
 unyu	lucu
 unyu	menggemaskan
 uplot	unggah
@@ -1150,4 +1176,5 @@ yoha	iya
 yowes	ya sudah
 yuk	ayo
 yup	iya
+yth	yang terhormat
 ywdh	ya sudah

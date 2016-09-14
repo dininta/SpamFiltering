@@ -31,6 +31,9 @@ public class main {
             // Formalization
             String text = formalizer.normalizeSentence(spam.get(i).toString());
             
+            //Replace All Non Alphabetic
+            text = text.replaceAll("[^a-zA-Z\\s]", " ");
+            
             //Stop Word
             formalizer.initStopword();
             text = formalizer.deleteStopword(text);
@@ -48,10 +51,13 @@ public class main {
             // Formalization
             String text = formalizer.normalizeSentence(notSpam.get(i).toString());
             
+            //Replace All Non Alphabetic
+            text = text.replaceAll("[^a-zA-Z\\s]", " ");
+            
             //Stop Word
             formalizer.initStopword();
             text = formalizer.deleteStopword(text);
-            
+                  
             // Stemming
             StringBuilder result = new StringBuilder();
             String[] words = text.split(" ");
