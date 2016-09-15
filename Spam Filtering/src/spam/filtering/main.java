@@ -16,13 +16,16 @@ public class main {
         FileReaderCSV reader = new FileReaderCSV();
         ArrayList spam = reader.readFile("traindata/spam.csv");
         ArrayList notSpam = reader.readFile("traindata/notSpam.csv");
+        ArrayList<String> token = new ArrayList<String>();
         
         // Preprocess
         SpamFiltering spamFiltering = new SpamFiltering();
         spam = spamFiltering.preProcess(spam);
         notSpam = spamFiltering.preProcess(notSpam);
+        token = spamFiltering.generateFeatures(spam);
         
         reader.writeFile(spam, "PreprocessSpam.csv");
         reader.writeFile(notSpam, "PreprocessNotSpam.csv");
+        reader.writeFile(token, "Token.csv");
     }
 }
