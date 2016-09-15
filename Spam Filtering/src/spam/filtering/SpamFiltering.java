@@ -7,6 +7,9 @@ package spam.filtering;
 
 import IndonesianNLP.IndonesianSentenceFormalization;
 import IndonesianNLP.IndonesianStemmer;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -47,5 +50,45 @@ public class SpamFiltering {
         }
         return processed;
     }
-    
+
+    public void writeToArff(ArrayList attribute, ArrayList spam, ArrayList notSpam, String filename) {
+        try {
+            File file = new File(filename);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            java.io.FileWriter fw = new java.io.FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("@relation spam\n\n");
+            for (int i = 0; i < attribute.size(); i++) {
+                bw.write("@attribute " + (String) attribute.get(i) + " {0,1}\n");
+            }
+            bw.write("@attribute class {spam,notspam}\n\n@data\n\n");
+            for (int i = 0; i < spam.size(); i++) {
+                for (int j = 0; j < attribute.size(); j++) {
+                    if (((String)spam.get(i)).contains((String)attribute.get(j))) {
+                        bw.write("1,");
+                    } else {
+                        bw.write("0,");
+                    }
+                }
+                bw.write("spam\n");
+            }
+            for (int i = 0; i < notSpam.size(); i++) {
+                for (int j = 0; j < attribute.size(); j++) {
+                    if (((String)notSpam.get(i)).contains((String)attribute.get(j))) {
+                        bw.write("1,");
+                    } else {
+                        bw.write("0,");
+                    }
+                }
+                bw.write("notspam\n");
+            }
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
