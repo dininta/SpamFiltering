@@ -27,5 +27,7 @@ public class main {
         reader.writeFile(spam, "PreprocessSpam.csv");
         reader.writeFile(notSpam, "PreprocessNotSpam.csv");
         reader.writeFile(token, "Token.csv");
+        
+        spamFiltering.writeToArff(token, spam, notSpam, "Spam.arff");
     }
 }

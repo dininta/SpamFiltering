@@ -77,7 +77,7 @@ public class SpamFiltering {
         return result;
     }
 
-    public void writeToArff(ArrayList attribute, ArrayList spam, ArrayList notSpam, String filename) {
+    public void writeToArff(ArrayList<String> attribute, ArrayList spam, ArrayList notSpam, String filename) {
         try {
             File file = new File(filename);
             if (!file.exists()) {
