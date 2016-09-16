@@ -30,7 +30,8 @@ public class SpamFiltering {
             String text = formalizer.normalizeSentence(listOfText.get(i).toString());
             
             //Replace All Non Alphabetic
-            text = text.replaceAll("[^a-zA-Z\\s]", " ");
+            //text = text.replaceAll("[^a-zA-Z\\s]", " ");
+            prosesNonAlfabet (text);
             
             //Stop Word
             formalizer.initStopword();
@@ -47,5 +48,19 @@ public class SpamFiltering {
         }
         return processed;
     }
+    
+    public void prosesNonAlfabet (String text){
+        boolean match; 
+        if (match = text.matches("(.*)REKENING(.*)|(.*)REK(.*)|(.*)rek(.*)|(.*)rekening(.*)|(.*)Rekening(.*)")) 
+        {
+            text = text.replaceAll("(.*)[0-9](.*){8,}", "noRek");
+        }
+        else if(match = text.matches("(.*)HP(.*)|(.*)Handphone(.*)|(.*)HANDPHONE(.*)|(.*)tlp(.*)|(.*)Telepon(.*)|(.*)TELEPON(.*)|(.*)Telp(.*)")) {
+            text = text.replaceAll("(.*)[0-9](.*)", "noHP");
+        }
+                
+            
+    }
+    
     
 }
