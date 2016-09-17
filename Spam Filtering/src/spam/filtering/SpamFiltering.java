@@ -57,23 +57,44 @@ public class SpamFiltering {
         return processed;
     }
     
-    public ArrayList<String> generateFeatures(ArrayList<String> sentences){
-        Map<String,Integer> counter = new HashMap<String, Integer>();
-        ArrayList<String> result = new ArrayList<String>();
+    public ArrayList<String> generateFeatures(ArrayList<String> spam, ArrayList<String> notSpam){
+        Map<String,Integer[]> counter = new HashMap<>();
+        ArrayList<String> result = new ArrayList<>();
         
-        for(int i=0; i<sentences.size(); i++) {
-            ArrayList<String> token = tokenizer.tokenizeSentence(sentences.get(i));
+        for(int i=0; i<spam.size(); i++) {
+            ArrayList<String> token = tokenizer.tokenizeSentence(spam.get(i));
             for(int j=0; j< token.size(); j++) {
                 if(!counter.containsKey(token.get(j))) {
-                    counter.put(token.get(j),1);
+                    Integer[] temp = {1,0}; 
+                    counter.put(token.get(j),temp);
                 } else {
-                    int count = counter.get(token.get(j)) + 1;
-                    counter.put(token.get(j), count);
+                    Integer[] temp = counter.get(token.get(j));
+                    temp[0]++;
+                    counter.put(token.get(j), temp);
                 }
             }
         }
-
+        
+        for(int i=0; i<notSpam.size(); i++) {
+            ArrayList<String> token = tokenizer.tokenizeSentence(notSpam.get(i));
+            for(int j=0; j< token.size(); j++) {
+                if(!counter.containsKey(token.get(j))) {
+                    Integer[] temp = {0,1}; 
+                    counter.put(token.get(j),temp);
+                } else {
+                    Integer[] temp = counter.get(token.get(j));
+                    temp[1]++;
+                    counter.put(token.get(j), temp);
+                }
+            }
+        }
+        
         result.addAll(counter.keySet());
+        
+//        for (int i=0; i< 20; i++){
+//            String key = result.get(i);
+//            System.out.println(key + " " + counter.get(key)[0] + " " + counter.get(key)[1]);
+//        }
         return result;
     }
 

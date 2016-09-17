@@ -22,12 +22,13 @@ public class main {
         SpamFiltering spamFiltering = new SpamFiltering();
         spam = spamFiltering.preProcess(spam);
         notSpam = spamFiltering.preProcess(notSpam);
-        token = spamFiltering.generateFeatures(spam);
+        token = spamFiltering.generateFeatures(spam, notSpam);
         
         reader.writeFile(spam, "PreprocessSpam.csv");
         reader.writeFile(notSpam, "PreprocessNotSpam.csv");
         reader.writeFile(token, "Token.csv");
         
         spamFiltering.writeToArff(token, spam, notSpam, "Spam.arff");
+        
     }
 }
