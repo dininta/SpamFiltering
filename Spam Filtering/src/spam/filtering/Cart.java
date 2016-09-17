@@ -13,6 +13,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Random;
+import weka.attributeSelection.AttributeSelection;
+import weka.attributeSelection.CfsSubsetEval;
+import weka.attributeSelection.GreedyStepwise;
+import weka.attributeSelection.InfoGainAttributeEval;
+import weka.attributeSelection.Ranker;
+import weka.classifiers.Evaluation;
+import weka.classifiers.meta.AttributeSelectedClassifier;
 
 /**
  *
@@ -29,9 +37,10 @@ public class Cart {
             data = new Instances(reader);
             reader.close();
             data.setClassIndex(data.numAttributes() - 1);
+            System.out.println(data.numAttributes());
 
             // build tree
-            tree = new SimpleCart();
+            tree = new SimpleCart();    
             tree.buildClassifier(data);
 	} catch (FileNotFoundException e) {
 	} catch (Exception e) {

@@ -8,13 +8,19 @@ package spam.filtering;
 import IndonesianNLP.IndonesianSentenceFormalization;
 import IndonesianNLP.IndonesianSentenceTokenizer;
 import IndonesianNLP.IndonesianStemmer;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
+import weka.attributeSelection.AttributeSelection;
+import weka.attributeSelection.InfoGainAttributeEval;
+import weka.attributeSelection.Ranker;
+import weka.core.Instances;
 
 /**
  *
@@ -57,12 +63,13 @@ public class SpamFiltering {
         return processed;
     }
     
-    public ArrayList<String> generateFeatures(ArrayList<String> spam, ArrayList<String> notSpam){
+    public ArrayList<String> generateFeatures(ArrayList<String> spam, ArrayList<String> notSpam) throws FileNotFoundException, IOException, Exception{
         Map<String,Integer[]> counter = new HashMap<>();
         ArrayList<String> result = new ArrayList<>();
         
         for(int i=0; i<spam.size(); i++) {
-            ArrayList<String> token = tokenizer.tokenizeSentence(spam.get(i));
+            ArrayList<String> token = tokenizer.tokenizeSentence(spam.get(i));           
+            
             for(int j=0; j< token.size(); j++) {
                 if(!counter.containsKey(token.get(j))) {
                     Integer[] temp = {1,0}; 
@@ -77,6 +84,7 @@ public class SpamFiltering {
         
         for(int i=0; i<notSpam.size(); i++) {
             ArrayList<String> token = tokenizer.tokenizeSentence(notSpam.get(i));
+            
             for(int j=0; j< token.size(); j++) {
                 if(!counter.containsKey(token.get(j))) {
                     Integer[] temp = {0,1}; 
@@ -89,14 +97,38 @@ public class SpamFiltering {
             }
         }
         
-        result.addAll(counter.keySet());
+        result.addAll(counter.keySet());        
         
 //        for (int i=0; i< 20; i++){
 //            String key = result.get(i);
 //            System.out.println(key + " " + counter.get(key)[0] + " " + counter.get(key)[1]);
 //        }
+        
         return result;
     }
+    
+    public ArrayList<String> featureSelection(String arffFile) throws FileNotFoundException, IOException, Exception {
+        BufferedReader reader = new BufferedReader(new FileReader(arffFile));
+        Instances data = new Instances(reader);
+        reader.close();
+        data.setClassIndex(data.numAttributes() - 1);
+        AttributeSelection selector = new AttributeSelection();
+        InfoGainAttributeEval evaluator = new InfoGainAttributeEval();
+        Ranker ranker = new Ranker();
+        ranker.setNumToSelect(Math.min(500, data.numAttributes() - 1));
+        selector.setEvaluator(evaluator);
+        selector.setSearch(ranker);
+        selector.SelectAttributes(data);
+        
+        int selectedAttr[] = selector.selectedAttributes();
+        ArrayList<String> result = new ArrayList<>();
+        for (int i=0; i<selectedAttr.length-1; i++) {
+            result.add(data.attribute(selectedAttr[i]).name());
+        }
+        
+        return result;
+    }
+    
 
     public void writeToArff(ArrayList<String> attribute, ArrayList spam, ArrayList notSpam, String filename) {
         try {

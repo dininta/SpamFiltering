@@ -31,8 +31,12 @@ public class main {
         
         spamFiltering.writeToArff(token, spam, notSpam, "Spam.arff");
         
+        token = spamFiltering.featureSelection("Spam.arff");
+        spamFiltering.writeToArff(token, spam, notSpam, "Spam2.arff");
+        
         // Build tree and classify text
-        Cart cart = new Cart("Spam.arff");
+        Cart cart = new Cart("Spam2.arff");
+        cart.printTree();
         Scanner input = new Scanner(System.in);
         while (true) {
             System.out.print("Enter text: ");
