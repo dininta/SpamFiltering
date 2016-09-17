@@ -42,15 +42,20 @@ public class Cart {
         System.out.println(tree.toString());
     }
     
-    public void classify(String[] attribute) throws Exception {
+    public void classify(String text) throws Exception {
         Instance newInstance = new DenseInstance(data.numAttributes());
         newInstance.setDataset(data);
         for (int i = 0; i < data.numAttributes()-1; i++) {
-            newInstance.setValue(i, attribute[i]);
+            if (text.contains(data.attribute(i).name()))
+                newInstance.setValue(i, 1);
+            else
+                newInstance.setValue(i, 0);
         }
         
         double[] result = tree.distributionForInstance(newInstance);
-        System.out.println("Class probabilities: " + Arrays.toString(result));
+        System.out.println("Class probabilities:");
+        System.out.println("Spam: " + result[0]);
+        System.out.println("Not spam: " + result[1]);
     }
     
 }

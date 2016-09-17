@@ -6,6 +6,7 @@
 package spam.filtering;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -30,5 +31,13 @@ public class main {
         
         spamFiltering.writeToArff(token, spam, notSpam, "Spam.arff");
         
+        // Build tree and classify text
+        Cart cart = new Cart("Spam.arff");
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            System.out.print("Enter text: ");
+            String text = input.nextLine();
+            cart.classify(text);
+        }
     }
 }
