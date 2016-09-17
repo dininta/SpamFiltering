@@ -13,7 +13,7 @@ import java.util.Scanner;
  * @author TOSHIBA PC
  */
 public class main {
-    public static void main(String[] args) {        
+    public static void main(String[] args) throws Exception {        
         FileReaderCSV reader = new FileReaderCSV();
         ArrayList spam = reader.readFile("traindata/spam.csv");
         ArrayList notSpam = reader.readFile("traindata/notSpam.csv");
