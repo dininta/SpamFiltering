@@ -57,10 +57,16 @@ public class Cart {
         System.out.println(tree.toString());
     }
     
-    public void classify() throws Exception {
+    public void classify(int option) throws Exception {
         Classifier cls = new SimpleCart();
         cls.buildClassifier(dataTrain);
         Evaluation eval = new Evaluation(dataTrain);
+       
+        //Cross validation 10 Fold
+        if(option==1) {
+            eval.crossValidateModel(tree, dataTrain, 10, new Random(1));
+        }
+        
         eval.evaluateModel(cls, dataTest);
         
         System.out.println(eval.toSummaryString("\nSummary\n======\n", false));   

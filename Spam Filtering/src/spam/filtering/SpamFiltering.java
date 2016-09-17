@@ -24,7 +24,7 @@ import weka.core.Instances;
 
 /**
  *
- * @author mochamadtry
+ * @author zulva dan icha
  */
 public class SpamFiltering {
 

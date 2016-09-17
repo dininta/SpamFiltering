@@ -39,16 +39,21 @@ public class main {
         
         System.out.println("------ SPAM FILTERING --------- ");
         
-        System.out.println("Nama File: ");
-        String filename = input.nextLine(); 
-        Cart cart = new Cart("DataSpam.arff", filename);
+
+        System.out.println("Test Options:");
+        System.out.println("0. Full Training");
+        System.out.println("1. 10 Folds Cross Validation");
+        System.out.print("Pilihan opsi: ");
+        int option = input.nextInt(); 
+        
+        Cart cart = new Cart("DataSpam.arff", "DataSpam.arff");
         
         System.out.println("\n=== Classifier model (full training set) ===");
         cart.printTree();
         
         System.out.println();
         System.out.println("\n=== Result ===");
-        cart.classify();
+        cart.classify(option);
         
     }
 }
