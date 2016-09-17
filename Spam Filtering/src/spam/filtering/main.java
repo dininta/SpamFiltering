@@ -34,14 +34,21 @@ public class main {
         token = spamFiltering.featureSelection("DataSpam.arff");
         spamFiltering.writeToArff(token, spam, notSpam, "DataSpam.arff");
         
-        // Build tree and classify text
-        Cart cart = new Cart("DataSpam.arff");
-        cart.printTree();
+        // Build tree and classify text    
         Scanner input = new Scanner(System.in);
-        while (true) {
-            System.out.print("Enter text: ");
-            String text = input.nextLine();
-            cart.classify(text);
-        }
+        
+        System.out.println("------ SPAM FILTERING --------- ");
+        
+        System.out.println("Nama File: ");
+        String filename = input.nextLine(); 
+        Cart cart = new Cart("DataSpam.arff", filename);
+        
+        System.out.println("\n=== Classifier model (full training set) ===");
+        cart.printTree();
+        
+        System.out.println();
+        System.out.println("\n=== Result ===");
+        cart.classify();
+        
     }
 }
