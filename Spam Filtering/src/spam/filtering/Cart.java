@@ -13,6 +13,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Random;
+import weka.attributeSelection.AttributeSelection;
+import weka.attributeSelection.CfsSubsetEval;
+import weka.attributeSelection.GreedyStepwise;
+import weka.attributeSelection.InfoGainAttributeEval;
+import weka.attributeSelection.Ranker;
+import weka.classifiers.Classifier;
+import weka.classifiers.Evaluation;
+import weka.classifiers.meta.AttributeSelectedClassifier;
 
 /**
  *
@@ -21,18 +30,24 @@ import java.util.Arrays;
 public class Cart {
     
     protected SimpleCart tree;
-    protected Instances data;
+    protected Instances dataTrain;
+    protected Instances dataTest;
     
-    public Cart(String arffFile) {
+    public Cart(String fileTrain, String fileTest) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(arffFile));
-            data = new Instances(reader);
+            BufferedReader reader = new BufferedReader(new FileReader(fileTrain));
+            dataTrain = new Instances(reader);
             reader.close();
-            data.setClassIndex(data.numAttributes() - 1);
+            dataTrain.setClassIndex(dataTrain.numAttributes() - 1);
+            
+            reader = new BufferedReader(new FileReader(fileTest));
+            dataTest = new Instances(reader);
+            reader.close();
+            dataTest.setClassIndex(dataTest.numAttributes() - 1);
 
             // build tree
-            tree = new SimpleCart();
-            tree.buildClassifier(data);
+            tree = new SimpleCart();    
+            tree.buildClassifier(dataTrain);
 	} catch (FileNotFoundException e) {
 	} catch (Exception e) {
 	}
@@ -42,15 +57,20 @@ public class Cart {
         System.out.println(tree.toString());
     }
     
-    public void classify(String[] attribute) throws Exception {
-        Instance newInstance = new DenseInstance(data.numAttributes());
-        newInstance.setDataset(data);
-        for (int i = 0; i < data.numAttributes()-1; i++) {
-            newInstance.setValue(i, attribute[i]);
+    public void classify(int option) throws Exception {
+        Classifier cls = new SimpleCart();
+        cls.buildClassifier(dataTrain);
+        Evaluation eval = new Evaluation(dataTrain);
+       
+        //Cross validation 10 Fold
+        if(option==1) {
+            eval.crossValidateModel(tree, dataTrain, 10, new Random(1));
         }
         
-        double[] result = tree.distributionForInstance(newInstance);
-        System.out.println("Class probabilities: " + Arrays.toString(result));
+        eval.evaluateModel(cls, dataTest);
+        
+        System.out.println(eval.toSummaryString("\nSummary\n======\n", false));   
+        System.out.println(eval.toClassDetailsString("\nStatistic\n======\n"));
+        System.out.println(eval.toMatrixString("\nConfusion Matrix\n======\n"));
     }
-    
 }
