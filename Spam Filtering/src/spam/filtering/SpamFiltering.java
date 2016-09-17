@@ -28,10 +28,10 @@ public class SpamFiltering {
         for (int i = 0; i < listOfText.size(); i++) {
             // Formalization
             String text = formalizer.normalizeSentence(listOfText.get(i).toString());
-            
+            System.out.println(text);
             //Replace All Non Alphabetic
             //text = text.replaceAll("[^a-zA-Z\\s]", " ");
-            prosesNonAlfabet (text);
+            text = prosesNonAlfabet (text.toLowerCase());
             
             //Stop Word
             formalizer.initStopword();
@@ -49,18 +49,19 @@ public class SpamFiltering {
         return processed;
     }
     
-    public void prosesNonAlfabet (String text){
-        boolean match; 
-        if (match = text.matches("(.*)REKENING(.*)|(.*)REK(.*)|(.*)rek(.*)|(.*)rekening(.*)|(.*)Rekening(.*)")) 
+    public String prosesNonAlfabet (String _text){
+        String text = _text;
+        boolean match;
+        if (match = text.matches("(.*)rek(.*)|(.*)rekening(.*)|(.*)transfer(.*)")) 
         {
-            text = text.replaceAll("(.*)[0-9](.*){8,}", "noRek");
+            text = text.replaceAll("[\\d]{8,}", "noRek");
         }
-        else if(match = text.matches("(.*)HP(.*)|(.*)Handphone(.*)|(.*)HANDPHONE(.*)|(.*)tlp(.*)|(.*)Telepon(.*)|(.*)TELEPON(.*)|(.*)Telp(.*)")) {
-            text = text.replaceAll("(.*)[0-9](.*)", "noHP");
+        else if(match = text.matches("(.*)hp(.*)|(.*)handphone(.*)|(.*)tlp(.*)|(.*)telepon(.*)|(.*)telp(.*)|(.*)hub(.*)|(.*)hubungi(.*)")) {
+            text = text.replaceAll("[\\d]{4,20}", "noHP");
         }
-                
-            
+        text = text.replaceAll("08\\d{6,20}", "noHP");
+        text = text.replaceAll("[^a-zA-Z\\s]", " ");
+        return text;
     }
-    
-    
+
 }
