@@ -36,29 +36,36 @@ public class SpamFiltering {
         formalizer = new IndonesianSentenceFormalization();
         stemmer = new IndonesianStemmer();
         tokenizer = new IndonesianSentenceTokenizer();
+        
+        formalizer.initStopword();
     }
     
     public ArrayList preProcess(ArrayList listOfText) {
         ArrayList processed = new ArrayList();
         for (int i = 0; i < listOfText.size(); i++) {
-            // Formalization
+            // Normalize Sentences
             String text = formalizer.normalizeSentence(listOfText.get(i).toString());
-            
+                        
             //Replace All Non Alphabetic
             text = text.replaceAll("[^a-zA-Z\\s]", " ");
-            
-            //Stop Word
-            formalizer.initStopword();
-            text = formalizer.deleteStopword(text);
                   
+            //Tokenizer
+            ArrayList<String> words = tokenizer.tokenizeSentence(text);
+             
             // Stemming
             StringBuilder result = new StringBuilder();
-            String[] words = text.split(" ");
+            //String[] words = text.split(" ");
             for (String word : words) {
-                if (word.length() > 1) result.append(stemmer.stem(word + " "));
+                if (word.length() > 1) {
+                    word = stemmer.stem(word);
+                    word = formalizer.formalizeWord(word);
+                    result.append(word + " ");
+                }
             }
             
-            processed.add(result.toString());
+            //Stop Word
+            String finalize = formalizer.deleteStopword(result.toString()); 
+            processed.add(finalize);
         }
         return processed;
     }
@@ -108,14 +115,16 @@ public class SpamFiltering {
     }
     
     public ArrayList<String> featureSelection(String arffFile) throws FileNotFoundException, IOException, Exception {
+        
         BufferedReader reader = new BufferedReader(new FileReader(arffFile));
         Instances data = new Instances(reader);
         reader.close();
+        
         data.setClassIndex(data.numAttributes() - 1);
         AttributeSelection selector = new AttributeSelection();
         InfoGainAttributeEval evaluator = new InfoGainAttributeEval();
         Ranker ranker = new Ranker();
-        ranker.setNumToSelect(Math.min(500, data.numAttributes() - 1));
+        ranker.setNumToSelect(Math.min(1000, data.numAttributes() - 1));
         selector.setEvaluator(evaluator);
         selector.setSearch(ranker);
         selector.SelectAttributes(data);

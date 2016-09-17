@@ -811,6 +811,7 @@ nunggu	menunggu
 nutupin	menutupi
 nw	now watching
 nyampah	membuat sampah
+ny	nya
 nyari	mencari
 nyariin	mencari
 nyekar	menyekar

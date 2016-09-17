@@ -29,13 +29,13 @@ public class main {
         reader.writeFile(notSpam, "PreprocessNotSpam.csv");
         reader.writeFile(token, "Token.csv");
         
-        spamFiltering.writeToArff(token, spam, notSpam, "Spam.arff");
+        spamFiltering.writeToArff(token, spam, notSpam, "DataSpam.arff");
         
-        token = spamFiltering.featureSelection("Spam.arff");
-        spamFiltering.writeToArff(token, spam, notSpam, "Spam2.arff");
+        token = spamFiltering.featureSelection("DataSpam.arff");
+        spamFiltering.writeToArff(token, spam, notSpam, "DataSpam.arff");
         
         // Build tree and classify text
-        Cart cart = new Cart("Spam2.arff");
+        Cart cart = new Cart("DataSpam.arff");
         cart.printTree();
         Scanner input = new Scanner(System.in);
         while (true) {

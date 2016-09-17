@@ -476,6 +476,7 @@ naik
 namun
 nanti
 nantinya
+nya
 nyaris
 nyatanya
 oleh
@@ -738,8 +739,6 @@ ucap
 ucapnya
 ujar
 ujarnya
-umum
-umumnya
 ungkap
 ungkapnya
 untuk
