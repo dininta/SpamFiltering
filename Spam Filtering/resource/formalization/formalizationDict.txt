@@ -25,6 +25,7 @@ akuwh	aku
 akyu	aku
 alay	norak
 aljasa	asal jadi saja
+almt	alamat
 alow	halo
 ama	sama
 ambilin	ambilkan
@@ -151,6 +152,7 @@ brg	bareng
 brngkt	berangkat
 bro	saudara laki-laki
 brp	berapa
+brsdia	bersedia
 bru	baru
 brur	saudara laki-laki
 bs	bisa
@@ -397,6 +399,7 @@ guys	teman-teman
 gw	saya
 gws	cepat sembuh
 ha	tertawa
+hadia	hadiah
 haghaghag	tertawa
 haha	tertawa
 hakhak	tertawa
@@ -541,6 +544,7 @@ klian	kalian
 klianz	kalian
 klo	kalau
 kloter	kelompok terbang
+klu	kalau
 kluarga	keluarga
 klw	kalau
 klwrga	keluarga
@@ -574,6 +578,7 @@ krenz	keren
 krik	garing
 krm	kirim
 krn	karena
+ksh	kasih
 kt	kita
 kta	kita
 ktauan	ketahuan
@@ -804,6 +809,7 @@ np	now playing
 nrp	narapidana
 ntar	nanti
 ntar	sebentar
+nti	nanti
 ntn	nonton
 nuhun	terima kasih
 numpuk	bertumpuk
@@ -882,6 +888,7 @@ pisgor	pisang goreng
 pk	penjahat kelamin
 pke	pakai
 plg	paling
+plgn	pelanggan
 pm	private message
 pmrnth	pemerintah
 pny	punya
@@ -1050,6 +1057,7 @@ tdk	tidak
 te2p	tetap
 teh	kakak perempuan
 tekor	rugi
+tel	telepom
 telat	terlambat
 telkom	telekomunikasi
 telmi	telat berpikir
@@ -1074,6 +1082,7 @@ tipiwan	TvOne
 tkg	tukang
 tks	terima kasih
 tlg	tolong
+tlh	telah
 tll	terlalu
 tlp	telepon
 tlpn	telepon
